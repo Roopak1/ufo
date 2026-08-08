@@ -400,6 +400,19 @@
           <span class="size-label">Size: 40%</span>
         </button>
       </div>
+
+      <!-- Mobile Controls (hidden on desktop) -->
+      <div class="mobile-controls">
+        <div class="joystick-zone" id="joystick-zone">
+          <div class="joystick-base">
+            <div class="joystick-stick" id="joystick-stick"></div>
+          </div>
+        </div>
+        <div class="altitude-zone">
+          <button class="control-btn mobile-btn" id="mobile-up" type="button">+</button>
+          <button class="control-btn mobile-btn" id="mobile-down" type="button">-</button>
+        </div>
+      </div>
     </main>
     <script>
       const scene = document.querySelector('.scene');
@@ -465,6 +478,62 @@
         if (e.key === ' ') keys.space = false;
       });
 
+      // Virtual Joystick State
+      const joystickZone = document.getElementById('joystick-zone');
+      const joystickStick = document.getElementById('joystick-stick');
+      let joystickActive = false;
+      let joystickOrigin = { x: 0, y: 0 };
+      let joystickVector = { x: 0, y: 0 };
+
+      joystickZone.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        joystickActive = true;
+        const touch = e.changedTouches[0];
+        const rect = joystickZone.getBoundingClientRect();
+        joystickOrigin = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+        updateJoystick(touch);
+      }, { passive: false });
+
+      joystickZone.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        if (!joystickActive) return;
+        updateJoystick(e.changedTouches[0]);
+      }, { passive: false });
+
+      joystickZone.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        joystickActive = false;
+        joystickVector = { x: 0, y: 0 };
+        joystickStick.style.transform = `translate(-50%, -50%)`;
+      }, { passive: false });
+
+      function updateJoystick(touch) {
+        const dx = touch.clientX - joystickOrigin.x;
+        const dy = touch.clientY - joystickOrigin.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const maxRadius = 40;
+
+        let normalizedDistance = Math.min(distance, maxRadius);
+        const angle = Math.atan2(dy, dx);
+        
+        const stickX = Math.cos(angle) * normalizedDistance;
+        const stickY = Math.sin(angle) * normalizedDistance;
+        
+        joystickStick.style.transform = `translate(calc(-50% + ${stickX}px), calc(-50% + ${stickY}px))`;
+        
+        joystickVector.x = stickX / maxRadius;
+        joystickVector.y = stickY / maxRadius;
+      }
+
+      // Mobile Altitude Buttons
+      const mobileUp = document.getElementById('mobile-up');
+      const mobileDown = document.getElementById('mobile-down');
+      
+      mobileUp.addEventListener('touchstart', (e) => { e.preventDefault(); keys.space = true; }, { passive: false });
+      mobileUp.addEventListener('touchend', (e) => { e.preventDefault(); keys.space = false; }, { passive: false });
+      mobileDown.addEventListener('touchstart', (e) => { e.preventDefault(); keys.shift = true; }, { passive: false });
+      mobileDown.addEventListener('touchend', (e) => { e.preventDefault(); keys.shift = false; }, { passive: false });
+
       // Game Loop
       function update() {
         // Update targets based on input
@@ -472,6 +541,12 @@
         if (keys.s) state.targetY += speed;
         if (keys.a) state.targetX -= speed;
         if (keys.d) state.targetX += speed;
+        
+        if (joystickActive) {
+          state.targetX += joystickVector.x * speed;
+          state.targetY += joystickVector.y * speed;
+        }
+
         if (keys.space) state.targetScale += scaleSpeed;
         if (keys.shift) state.targetScale -= scaleSpeed;
 
