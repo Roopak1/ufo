@@ -311,6 +311,9 @@
         <div class="altitude-controls">
           <button class="mobile-btn" id="mobile-size-up" type="button">+</button>
           <button class="mobile-btn" id="mobile-size-down" type="button">-</button>
+          <button class="mobile-btn mobile-projector-toggle" id="mobile-projector-toggle" type="button" aria-label="Toggle projector" aria-pressed="true">
+            <span class="toggle-indicator" aria-hidden="true"></span>
+          </button>
         </div>
 
         <!-- Right Side: Virtual Joystick -->
@@ -374,6 +377,11 @@
         if (e.key === 'Shift') keys.shift = false;
         if (e.key === ' ') keys.space = false;
       });
+
+      const mobileProjectorToggle = document.getElementById('mobile-projector-toggle');
+      if (mobileProjectorToggle) {
+        mobileProjectorToggle.addEventListener('click', toggleProjector);
+      }
 
       // Mobile altitude and joystick controls
       const btnUp = document.getElementById('mobile-size-up');

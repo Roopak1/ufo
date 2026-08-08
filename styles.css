@@ -322,6 +322,18 @@ html, body, .scene { background: #020b19; }
     background: rgba(11, 62, 72, .9);
     transform: scale(0.92);
   }
+  .mobile-projector-toggle .toggle-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #aaff86;
+    box-shadow: 0 0 12px #68ff9a;
+    transition: background .28s ease, box-shadow .28s ease;
+  }
+  .scene.projector-off .mobile-projector-toggle .toggle-indicator {
+    background: #ff5e5e;
+    box-shadow: 0 0 12px #ff3333;
+  }
   
   .joystick-zone {
     width: 160px;
