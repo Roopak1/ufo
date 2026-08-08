@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#02041f" />
+    <title>UFO Night Sky</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Entire illustration is vector markup: no raster image is used. -->
+    <main class="scene" aria-label="Illustration of a flying saucer beaming light over a dark forest">
+      <div class="bg-gradient" aria-hidden="true"></div>
+      <svg class="art" viewBox="0 0 1317 1196" role="img" aria-labelledby="art-title art-desc" preserveAspectRatio="xMidYMid slice">
+        <title id="art-title">A glowing UFO in a starry night sky</title>
+        <desc id="art-desc">A green flying saucer with a friendly alien pilot shines an emerald beam over dark foliage.</desc>
+
+        <defs>
+          <linearGradient id="beam" x1="0.5" y1="0" x2="0.5" y2="1">
+            <stop offset="0" stop-color="#4bff33" stop-opacity="1" />
+            <stop offset=".4" stop-color="#1ac740" stop-opacity=".9" />
+            <stop offset="1" stop-color="#007a2a" stop-opacity=".5" />
+          </linearGradient>
+          <linearGradient id="beam-inner" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#00ff22" stop-opacity="0" />
+            <stop offset=".35" stop-color="#85ff93" stop-opacity=".9" />
+            <stop offset=".5" stop-color="#d6ffdc" stop-opacity="1" />
+            <stop offset=".65" stop-color="#85ff93" stop-opacity=".9" />
+            <stop offset="1" stop-color="#00ff22" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient id="beam-fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="1" />
+            <stop offset="0.75" stop-color="#ffffff" stop-opacity="1" />
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0.3" />
+          </linearGradient>
+          <mask id="beam-fade-mask">
+            <rect x="0" y="0" width="1317" height="1196" fill="url(#beam-fade)" />
+          </mask>
+          <linearGradient id="dome" x1="0.16" y1="0" x2=".86" y2="1">
+            <stop offset="0" stop-color="#dffff4" stop-opacity=".96" />
+            <stop offset=".33" stop-color="#73efd0" stop-opacity=".76" />
+            <stop offset=".72" stop-color="#268f82" stop-opacity=".84" />
+            <stop offset="1" stop-color="#0e4e52" stop-opacity=".94" />
+          </linearGradient>
+          <linearGradient id="saucer" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2c756e" />
+            <stop offset=".48" stop-color="#205a62" />
+            <stop offset="1" stop-color="#123b54" />
+          </linearGradient>
+          <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#86cfb3" />
+            <stop offset="1" stop-color="#3c7880" />
+          </linearGradient>
+          <clipPath id="cockpit-clip">
+            <path d="M469 263 C474 158 555 76 670 76 C777 76 860 154 869 263 C753 280 584 280 469 263 Z" />
+          </clipPath>
+          <clipPath id="beam-clip">
+            <ellipse cx="659" cy="491" rx="160" ry="28" />
+            <rect x="0" y="491" width="1317" height="10000" />
+          </clipPath>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="12" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <filter id="soft-glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <filter id="light-bloom" x="-120%" y="-120%" width="340%" height="340%">
+            <feGaussianBlur stdDeviation="5" result="bloom" />
+            <feMerge><feMergeNode in="bloom" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
+
+
+
+        <g class="stars" fill="#fff">
+<circle cx="1519" cy="-544" r="1.0"/>
+<circle cx="26" cy="3" r="1.3"/>
+<circle cx="1916" cy="-581" r="2.0"/>
+<circle cx="1133" cy="-644" r="1.9"/>
+<circle cx="-970" cy="-878" r="1.1"/>
+<circle cx="-148" cy="1069" r="1.9"/>
+<circle cx="1198" cy="-186" r="2.1"/>
+<circle cx="1772" cy="1232" r="1.6"/>
+<circle cx="739" cy="1413" r="1.4"/>
+<circle cx="-1074" cy="2108" r="2.2"/>
+<circle cx="1759" cy="731" r="1.5"/>
+<circle cx="-464" cy="-119" r="2.4"/>
+<circle cx="278" cy="-582" r="1.1"/>
+<circle cx="-704" cy="470" r="2.3"/>
+<circle cx="1372" cy="83" r="2.2"/>
+<circle cx="1888" cy="881" r="1.8"/>
+<circle cx="450" cy="-678" r="1.8"/>
+<circle cx="2297" cy="1574" r="1.9"/>
+<circle cx="381" cy="1364" r="1.3"/>
+<circle cx="-816" cy="-813" r="2.0"/>
+<circle cx="2066" cy="185" r="2.5"/>
+<circle cx="-147" cy="-587" r="1.6"/>
+<circle cx="757" cy="1603" r="2.3"/>
+<circle cx="-434" cy="516" r="1.5"/>
+<circle cx="1645" cy="93" r="2.1"/>
+<circle cx="1699" cy="1654" r="1.1"/>
+<circle cx="1500" cy="-300" r="1.8"/>
+<circle cx="-98" cy="-331" r="1.7"/>
+<circle cx="5" cy="1621" r="2.0"/>
+<circle cx="-201" cy="1804" r="1.5"/>
+<circle cx="2047" cy="2178" r="1.1"/>
+<circle cx="2266" cy="-869" r="2.2"/>
+<circle cx="543" cy="96" r="1.1"/>
+<circle cx="1223" cy="1940" r="1.5"/>
+<circle cx="1584" cy="1044" r="1.6"/>
+<circle cx="1533" cy="879" r="1.2"/>
+<circle cx="-529" cy="10" r="2.1"/>
+<circle cx="1107" cy="76" r="2.1"/>
+<circle cx="654" cy="1390" r="1.6"/>
+<circle cx="-202" cy="-434" r="1.8"/>
+<circle cx="-728" cy="2095" r="1.1"/>
+<circle cx="-651" cy="-374" r="1.9"/>
+<circle cx="2144" cy="1787" r="1.6"/>
+<circle cx="-840" cy="576" r="1.6"/>
+<circle cx="817" cy="1167" r="1.4"/>
+<circle cx="1166" cy="-953" r="2.0"/>
+<circle cx="-631" cy="1792" r="2.3"/>
+<circle cx="1975" cy="92" r="2.2"/>
+<circle cx="293" cy="-544" r="1.4"/>
+<circle cx="-453" cy="858" r="1.0"/>
+<circle cx="1857" cy="1947" r="1.4"/>
+<circle cx="950" cy="2120" r="1.3"/>
+<circle cx="-665" cy="1561" r="1.4"/>
+<circle cx="1517" cy="1079" r="1.9"/>
+<circle cx="-474" cy="531" r="2.1"/>
+<circle cx="1109" cy="2189" r="2.4"/>
+<circle cx="-1098" cy="1453" r="1.5"/>
+<circle cx="-1021" cy="-542" r="2.4"/>
+<circle cx="2306" cy="259" r="1.4"/>
+<circle cx="-114" cy="1323" r="2.4"/>
+<circle cx="-750" cy="1997" r="1.7"/>
+<circle cx="-817" cy="2115" r="1.8"/>
+<circle cx="-585" cy="-475" r="2.0"/>
+<circle cx="1151" cy="-324" r="1.4"/>
+<circle cx="1384" cy="733" r="2.4"/>
+<circle cx="1108" cy="2093" r="2.1"/>
+<circle cx="-277" cy="1920" r="1.5"/>
+<circle cx="1651" cy="1661" r="1.6"/>
+<circle cx="1019" cy="849" r="1.2"/>
+<circle cx="-180" cy="-738" r="1.5"/>
+<circle cx="1309" cy="1268" r="1.3"/>
+<circle cx="-198" cy="-971" r="1.1"/>
+<circle cx="1484" cy="-759" r="1.3"/>
+<circle cx="-972" cy="353" r="1.1"/>
+<circle cx="-126" cy="140" r="2.0"/>
+<circle cx="-223" cy="1208" r="1.2"/>
+<circle cx="1238" cy="1360" r="1.7"/>
+<circle cx="2113" cy="937" r="2.2"/>
+<circle cx="-321" cy="-614" r="1.1"/>
+<circle cx="665" cy="451" r="1.6"/>
+<circle cx="812" cy="1986" r="1.1"/>
+<circle cx="1576" cy="1646" r="1.1"/>
+<circle cx="549" cy="1982" r="1.5"/>
+<circle cx="-653" cy="18" r="1.3"/>
+<circle cx="1096" cy="837" r="1.2"/>
+<circle cx="-349" cy="140" r="1.7"/>
+<circle cx="-792" cy="815" r="2.2"/>
+<circle cx="1154" cy="-599" r="1.1"/>
+<circle cx="1114" cy="-940" r="2.5"/>
+<circle cx="1986" cy="-32" r="1.2"/>
+<circle cx="889" cy="971" r="1.3"/>
+<circle cx="542" cy="-760" r="1.2"/>
+<circle cx="-1092" cy="599" r="1.4"/>
+<circle cx="2111" cy="863" r="1.4"/>
+<circle cx="1753" cy="1992" r="2.5"/>
+<circle cx="1176" cy="1711" r="2.1"/>
+<circle cx="-466" cy="-223" r="1.4"/>
+<circle cx="-861" cy="1372" r="2.1"/>
+<circle cx="-851" cy="2063" r="1.5"/>
+<circle cx="-895" cy="1392" r="1.7"/>
+<circle cx="2392" cy="1175" r="1.2"/>
+<circle cx="980" cy="-672" r="2.3"/>
+<circle cx="-820" cy="1437" r="1.1"/>
+<circle cx="-137" cy="653" r="1.2"/>
+<circle cx="1233" cy="8" r="1.9"/>
+<circle cx="-938" cy="1536" r="1.1"/>
+<circle cx="1592" cy="1390" r="1.8"/>
+<circle cx="195" cy="68" r="1.3"/>
+<circle cx="1833" cy="286" r="1.4"/>
+<circle cx="521" cy="-464" r="2.0"/>
+<circle cx="128" cy="872" r="1.5"/>
+<circle cx="1979" cy="-703" r="1.0"/>
+<circle cx="1444" cy="1306" r="2.5"/>
+<circle cx="-800" cy="1202" r="1.3"/>
+<circle cx="-14" cy="-458" r="2.4"/>
+<circle cx="-819" cy="0" r="1.6"/>
+<circle cx="-454" cy="794" r="2.3"/>
+<circle cx="1781" cy="239" r="1.9"/>
+<circle cx="2205" cy="1678" r="1.8"/>
+<circle cx="1635" cy="1271" r="1.4"/>
+<circle cx="1617" cy="-576" r="2.4"/>
+<circle cx="-550" cy="83" r="1.2"/>
+<circle cx="-662" cy="2040" r="1.8"/>
+<circle cx="15" cy="154" r="1.9"/>
+<circle cx="1839" cy="404" r="1.3"/>
+<circle cx="1497" cy="81" r="1.8"/>
+<circle cx="-72" cy="-792" r="1.1"/>
+<circle cx="634" cy="133" r="1.1"/>
+<circle cx="266" cy="2158" r="1.2"/>
+<circle cx="-28" cy="-339" r="2.1"/>
+<circle cx="1159" cy="1890" r="1.6"/>
+<circle cx="-1061" cy="-542" r="1.1"/>
+<circle cx="1730" cy="-390" r="1.8"/>
+<circle cx="2318" cy="512" r="1.9"/>
+<circle cx="-494" cy="760" r="1.2"/>
+<circle cx="162" cy="493" r="2.3"/>
+<circle cx="2160" cy="-837" r="2.3"/>
+<circle cx="-240" cy="1793" r="1.4"/>
+<circle cx="-679" cy="448" r="2.2"/>
+<circle cx="564" cy="1542" r="2.1"/>
+<circle cx="-131" cy="-335" r="2.5"/>
+<circle cx="2220" cy="-275" r="2.3"/>
+<circle cx="-999" cy="-266" r="2.1"/>
+<circle cx="260" cy="686" r="2.2"/>
+<circle cx="1910" cy="16" r="1.4"/>
+<circle cx="2125" cy="1872" r="1.2"/>
+<circle cx="-942" cy="927" r="1.3"/>
+<circle cx="2244" cy="885" r="1.5"/>
+<circle cx="2260" cy="-68" r="1.3"/>
+<circle cx="1603" cy="-209" r="1.6"/>
+<circle cx="41" cy="-716" r="2.5"/>
+<circle cx="43" cy="438" r="2.0"/>
+<circle cx="537" cy="1783" r="2.5"/>
+<circle cx="1096" cy="356" r="2.4"/>
+<circle cx="-628" cy="69" r="1.3"/>
+<circle cx="-13" cy="-844" r="1.2"/>
+<circle cx="679" cy="415" r="2.1"/>
+<circle cx="184" cy="787" r="1.9"/>
+<circle cx="994" cy="-527" r="1.6"/>
+<circle cx="1261" cy="-222" r="1.4"/>
+<circle cx="1803" cy="786" r="1.0"/>
+<circle cx="2203" cy="1205" r="2.0"/>
+<circle cx="1939" cy="2018" r="2.0"/>
+<circle cx="391" cy="766" r="1.1"/>
+<circle cx="1620" cy="352" r="1.9"/>
+<circle cx="1617" cy="-490" r="2.1"/>
+<circle cx="130" cy="1077" r="1.5"/>
+<circle cx="572" cy="336" r="1.6"/>
+<circle cx="111" cy="1270" r="1.2"/>
+<circle cx="622" cy="1723" r="2.4"/>
+<circle cx="1674" cy="2064" r="2.4"/>
+<circle cx="1421" cy="1331" r="1.5"/>
+<circle cx="1144" cy="-999" r="1.5"/>
+<circle cx="-240" cy="760" r="2.2"/>
+<circle cx="1384" cy="1681" r="1.5"/>
+<circle cx="709" cy="811" r="2.0"/>
+<circle cx="993" cy="938" r="2.2"/>
+<circle cx="2160" cy="2014" r="1.3"/>
+<circle cx="-753" cy="162" r="1.8"/>
+<circle cx="1492" cy="1536" r="1.5"/>
+<circle cx="2252" cy="2076" r="1.4"/>
+<circle cx="171" cy="-80" r="2.2"/>
+<circle cx="-497" cy="-900" r="1.1"/>
+<circle cx="846" cy="1503" r="2.3"/>
+<circle cx="-802" cy="865" r="1.6"/>
+<circle cx="1479" cy="1357" r="1.3"/>
+<circle cx="1752" cy="572" r="1.7"/>
+<circle cx="-101" cy="-396" r="2.0"/>
+<circle cx="-1078" cy="2075" r="2.3"/>
+<circle cx="-664" cy="2188" r="1.6"/>
+<circle cx="-380" cy="1850" r="1.8"/>
+<circle cx="-895" cy="1283" r="1.4"/>
+<circle cx="2374" cy="-503" r="1.7"/>
+<circle cx="2182" cy="903" r="2.0"/>
+<circle cx="1189" cy="1438" r="1.5"/>
+<circle cx="1993" cy="812" r="1.9"/>
+<circle cx="1846" cy="1067" r="1.6"/>
+<circle cx="1144" cy="826" r="2.3"/>
+<circle cx="1946" cy="944" r="1.7"/>
+<circle cx="1979" cy="12" r="2.3"/>
+
+</g>
+        <g class="sparkles" fill="#f5fdff" filter="url(#soft-glow)">
+<path d="M35 2126l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M2085 1125l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M884 1557l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M-121 114l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M701 -693l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M1822 160l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M-140 102l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M275 299l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M1112 -680l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M-534 -393l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M-153 558l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M1742 -385l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M1793 -134l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M-837 689l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M569 345l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M1122 898l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M603 -755l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M-253 710l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M495 2143l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M1292 1838l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M-1020 2125l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M1258 548l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M853 -986l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M340 213l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M1986 587l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M2395 706l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M1104 2051l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M1909 1226l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M2176 1460l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+<path d="M-197 989l2.4 5.4 5.4 2.4-5.4 2.4-2.4 5.4-2.4-5.4-5.4-2.4 5.4-2.4z"/>
+
+</g>
+
+
+        <g class="ufo-scaler">
+          <g class="ufo">
+                    <path d="M469 263 C474 158 555 76 670 76 C777 76 860 154 869 263 C753 280 584 280 469 263 Z" fill="url(#dome)" />
+          <g class="alien" clip-path="url(#cockpit-clip)" aria-label="A green alien cat pilot">
+            <image href="alien-cat.png" x="560" y="80" width="230" height="230" preserveAspectRatio="xMidYMid meet" />
+          </g>
+          <path d="M470 245 C572 206 762 205 869 246 L869 264 C757 280 586 280 469 264 Z" fill="#0d4c4c" opacity=".66" />
+          <path d="M222 363 C307 281 493 246 659 246 C825 246 1013 281 1096 363 C1115 381 1117 397 1109 410 C1074 468 887 481 659 481 C430 481 244 468 209 410 C201 397 203 381 222 363 Z" fill="url(#saucer)" />
+          <path d="M222 363 C315 300 495 276 659 276 C823 276 1003 300 1096 363 C1108 372 1114 382 1115 392 C1092 368 1047 346 987 330 C893 305 778 292 659 292 C540 292 425 305 331 330 C271 346 226 368 203 392 C204 382 210 372 222 363 Z" fill="#91cbb7" opacity=".82" />
+          <path d="M412 444 C473 411 588 396 659 396 C730 396 845 411 906 444 C922 453 928 463 923 472 C909 497 814 515 659 515 C504 515 409 497 395 472 C390 463 396 453 412 444 Z" fill="#092f37" />
+          <path d="M448 450 C498 430 581 419 659 419 C737 419 820 430 870 450 C887 457 895 465 894 474 C890 494 801 516 659 516 C517 516 428 494 424 474 C423 465 431 457 448 450 Z" fill="url(#rim)" />
+          <g class="projector-aperture">
+            <ellipse class="aperture-base" cx="659" cy="491" rx="175" ry="32" fill="#041a1f" />
+            <ellipse class="aperture-inset" cx="659" cy="491" rx="160" ry="28" fill="#01060a" />
+            <ellipse class="projector-light" cx="659" cy="491" rx="155" ry="26" fill="#d9ffbf" filter="url(#soft-glow)" />
+            <g clip-path="url(#beam-clip)">
+              <g class="projection" aria-hidden="true" style="mix-blend-mode: plus-lighter;" mask="url(#beam-fade-mask)">
+                <path class="beam-glow" d="M499 491 A 160 28 0 0 1 819 491 L1081 1158 Q659 1195 237 1158 Z" fill="url(#beam)" opacity=".6" filter="url(#glow)" />
+                <path class="beam-core" d="M559 491 A 100 17.5 0 0 1 759 491 L961 1158 Q659 1180 357 1158 Z" fill="url(#beam-inner)" opacity=".7" />
+                <path class="beam-inner" d="M629 491 A 30 5.25 0 0 1 689 491 L731 1158 Q659 1165 587 1158 Z" fill="#ffffff" opacity=".8" filter="url(#soft-glow)" />
+                <g class="beam-layers" fill="none" stroke="#7eff66">
+                  <!-- Reduced the Q curve height so they don't stretch into massive U shapes -->
+                  <path d="M540 500 Q659 520 778 500" />
+                  <path d="M520 600 Q659 620 798 600" />
+                  <path d="M500 750 Q659 770 818 750" />
+                  <path d="M485 850 Q659 870 833 850" />
+                  <path d="M470 950 Q659 970 848 950" />
+                </g>
+                <g class="beam-rings" fill="none" stroke="#7eff66" aria-hidden="true">
+                  <ellipse cx="659" cy="491" rx="160" ry="28" />
+                  <ellipse cx="659" cy="491" rx="160" ry="28" />
+                  <ellipse cx="659" cy="491" rx="160" ry="28" />
+                  <ellipse cx="659" cy="491" rx="160" ry="28" />
+                  <ellipse cx="659" cy="491" rx="160" ry="28" />
+                  <ellipse cx="659" cy="491" rx="160" ry="28" />
+                  <!-- 2 additional rings -->
+                  <ellipse cx="659" cy="491" rx="160" ry="28" />
+                  <ellipse cx="659" cy="491" rx="160" ry="28" />
+                </g>
+                <g class="beam-motes" fill="#ffffff" aria-hidden="true">
+                  <circle cx="620" cy="540" r="3.5"/><circle cx="700" cy="570" r="3"/>
+                  <circle cx="635" cy="640" r="4"/><circle cx="685" cy="700" r="3.5"/>
+                  <circle cx="575" cy="760" r="4"/><circle cx="740" cy="810" r="3"/>
+                  <circle cx="610" cy="870" r="3.5"/><circle cx="710" cy="930" r="4"/>
+                  <circle cx="545" cy="980" r="4.5"/><circle cx="775" cy="1030" r="3"/>
+                  <circle cx="500" cy="1080" r="4"/><circle cx="820" cy="1130" r="3.5"/>
+                  <!-- 12 new motes -->
+                  <circle cx="659" cy="510" r="3"/><circle cx="680" cy="600" r="4"/>
+                  <circle cx="600" cy="670" r="3.5"/><circle cx="720" cy="730" r="4.5"/>
+                  <circle cx="530" cy="820" r="3"/><circle cx="790" cy="880" r="3.5"/>
+                  <circle cx="510" cy="960" r="4"/><circle cx="810" cy="1000" r="3"/>
+                  <circle cx="580" cy="1060" r="4.5"/><circle cx="730" cy="1100" r="3.5"/>
+                  <circle cx="490" cy="1150" r="4"/><circle cx="830" cy="1170" r="3"/>
+                </g>
+              </g>
+            </g>
+            <ellipse class="aperture-ring-1" cx="659" cy="491" rx="155" ry="26" fill="none" stroke="#03151a" stroke-width="4" />
+            <ellipse class="aperture-ring-2" cx="659" cy="491" rx="115" ry="19" fill="none" stroke="#05242b" stroke-width="6" opacity=".8" />
+            <ellipse class="aperture-ring-3" cx="659" cy="491" rx="65" ry="11" fill="none" stroke="#083a45" stroke-width="8" opacity=".9" />
+            <ellipse class="projector-core" cx="659" cy="491" rx="25" ry="6" fill="#ffffff" filter="url(#glow)" />
+          </g>
+          <g class="lights" fill="#bdf85d" stroke="#dcff8c" stroke-width="2">
+            <ellipse cx="316" cy="388" rx="24" ry="20"/><ellipse cx="467" cy="356" rx="24" ry="20"/>
+            <ellipse cx="670" cy="347" rx="25" ry="20"/><ellipse cx="873" cy="356" rx="24" ry="20"/><ellipse cx="1023" cy="388" rx="24" ry="20"/>
+          </g>
+          <path d="M526 200 Q545 154 615 127" fill="none" stroke="#efffe2" stroke-opacity=".82" stroke-linecap="round" stroke-width="13" />
+        </g>
+        </g>
+
+        <g class="ground-layer">
+          <path d="M0 1158 Q53 1140 102 1152 Q143 1140 181 1159 Q236 1138 285 1152 Q322 1139 369 1158 Q419 1133 457 1152 Q509 1129 548 1156 Q591 1130 631 1152 Q662 1138 702 1155 Q758 1129 799 1153 Q845 1137 890 1156 Q930 1129 975 1151 Q1020 1128 1060 1155 Q1106 1133 1149 1153 Q1191 1137 1233 1154 Q1270 1140 1317 1158 L1317 1196 L0 1196Z" fill="#020a2b" />
+          <g class="foliage" fill="#020a2b">
+            <path d="M0 1200V1139Q25 1144 65 1162L39 1095Q38 1085 47 1089L110 1141L78 1013Q74 977 88 957Q100 941 116 967L144 1051L172 966Q179 947 187 963L228 1084L257 1047Q270 1032 279 1042L273 1111L308 1072Q322 1058 327 1072L312 1142V1200L0 1200Z"/>
+                      <path d="M1044 1196L1008 1138L1002 1073Q1012 1058 1024 1074L1044 1096L1061 1045Q1067 1030 1077 1048L1088 1083L1111 992Q1120 973 1130 991L1158 1051L1195 1016Q1206 1006 1206 1022L1199 1095L1248 1054Q1263 1042 1260 1064L1230 1127L1286 1093Q1304 1083 1290 1111L1266 1164L1317 1196Z"/>
+
+          </g>
+        </g>
+      </svg>
+      <div class="controls-bar">
+        <button class="control-btn projector-toggle" id="projector-toggle" type="button" aria-pressed="true">
+          <span class="toggle-indicator" aria-hidden="true"></span>
+          <span class="toggle-label">Projector on</span>
+        </button>
+        <button class="control-btn size-toggle" id="size-toggle" type="button">
+          <span class="size-icon">🔍</span>
+          <span class="size-label">Size: 40%</span>
+        </button>
+      </div>
+    </main>
+    <script>
+      const scene = document.querySelector('.scene');
+      const projectorButton = document.querySelector('#projector-toggle');
+      const projectorLabel = projectorButton.querySelector('.toggle-label');
+      const sizeButton = document.querySelector('#size-toggle');
+      const sizeLabel = sizeButton.querySelector('.size-label');
+      const projection = document.querySelector('.projection');
+      const beamRings = document.querySelector('.beam-rings');
+      const beamMotes = document.querySelector('.beam-motes');
+
+      let startTimer;
+
+      // Physics State
+      const keys = { w: false, a: false, s: false, d: false, shift: false, space: false };
+      const state = {
+        x: 0, y: 0, scale: 0.4, rotate: 0,
+        targetX: 0, targetY: 0, targetScale: 0.4
+      };
+      const speed = 5.5;
+      const scaleSpeed = 0.01;
+      const lerpFactor = 0.05;
+
+      // Projector Toggle Logic
+      function toggleProjector() {
+        window.clearTimeout(startTimer);
+        const isOff = scene.classList.contains('projector-off');
+        if (isOff) {
+          scene.classList.remove('projector-off');
+          scene.classList.add('projector-starting');
+          projectorButton.setAttribute('aria-pressed', 'true');
+          projectorLabel.textContent = 'Projector on';
+          startTimer = window.setTimeout(() => scene.classList.remove('projector-starting'), 760);
+        } else {
+          scene.classList.remove('projector-starting');
+          scene.classList.add('projector-off');
+          projectorButton.setAttribute('aria-pressed', 'false');
+          projectorLabel.textContent = 'Projector off';
+        }
+      }
+
+      projectorButton.addEventListener('click', toggleProjector);
+
+      // Keyboard Listeners
+      window.addEventListener('keydown', (e) => {
+        const key = e.key.toLowerCase();
+        if (key === 'w') keys.w = true;
+        if (key === 'a') keys.a = true;
+        if (key === 's') keys.s = true;
+        if (key === 'd') keys.d = true;
+        if (e.key === 'Shift') keys.shift = true;
+        if (e.key === ' ') keys.space = true;
+        if (key === 't') toggleProjector();
+      });
+
+      window.addEventListener('keyup', (e) => {
+        const key = e.key.toLowerCase();
+        if (key === 'w') keys.w = false;
+        if (key === 'a') keys.a = false;
+        if (key === 's') keys.s = false;
+        if (key === 'd') keys.d = false;
+        if (e.key === 'Shift') keys.shift = false;
+        if (e.key === ' ') keys.space = false;
+      });
+
+      // Game Loop
+      function update() {
+        // Update targets based on input
+        if (keys.w) state.targetY -= speed;
+        if (keys.s) state.targetY += speed;
+        if (keys.a) state.targetX -= speed;
+        if (keys.d) state.targetX += speed;
+        if (keys.space) state.targetScale += scaleSpeed;
+        if (keys.shift) state.targetScale -= scaleSpeed;
+
+        // Clamp scale and Y to prevent breaking the scene
+        state.targetScale = Math.max(0.2, Math.min(state.targetScale, 1.5));
+        
+        // Lerp towards targets
+        state.x += (state.targetX - state.x) * lerpFactor;
+        state.y += (state.targetY - state.y) * lerpFactor;
+        state.scale += (state.targetScale - state.scale) * lerpFactor;
+
+        // Calculate rotation based on X velocity (distance between target and current)
+        // Max distance is roughly speed / lerpFactor (5.5 / 0.05 = 110)
+        const targetRotate = (state.targetX - state.x) * 0.12; 
+        state.rotate += (targetRotate - state.rotate) * 0.1;
+
+        // Apply transformations
+        scene.style.setProperty('--ufo-x', state.x + 'px');
+        scene.style.setProperty('--ufo-y', state.y + 'px');
+        scene.style.setProperty('--ufo-scale', state.scale);
+        scene.style.setProperty('--ufo-rotate', state.rotate + 'deg');
+        
+        // Dynamic Brightness Calculation
+        // Fade the beam opacity as the UFO gets smaller so it doesn't become too bright
+        // Uses an even gentler curve (min opacity ~0.84)
+        const beamOpacity = Math.min(1, 0.8 + state.scale * 0.2);
+        scene.style.setProperty('--beam-opacity', beamOpacity);
+
+        // Dynamic Beam Calculation
+        // The UFO group scales around origin Y=350. The ground is fixed at Y=1196.
+        // The beam's base length is 705.
+        // beamScaleY must stretch precisely to the ground, accounting for the scale origin offset.
+        const requiredBeamLength = (1246 - state.y) / state.scale - 141;
+        const beamScaleY = Math.max(0, requiredBeamLength / 705);
+
+        projection.style.setProperty('--beam-scale-y', beamScaleY);
+        
+        const counterY = beamScaleY > 0 ? 1 / beamScaleY : 1;
+        beamRings.style.setProperty('--ring-counter-y', counterY);
+        beamRings.style.setProperty('--ring-travel', Math.round(705 * beamScaleY) + 'px');
+        beamMotes.style.setProperty('--mote-counter-y', counterY);
+
+        // Update UI label
+        if (Math.abs(state.targetScale - state.scale) > 0.01) {
+           sizeLabel.textContent = `Size: ${(state.scale * 100).toFixed(0)}%`;
+        }
+
+        requestAnimationFrame(update);
+      }
+      
+      // Start loop
+      update();
+    </script>
+  </body>
+</html>

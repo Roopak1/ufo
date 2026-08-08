@@ -1,0 +1,382 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #02041f; }
+body { overflow: hidden; font-family: Georgia, serif; }
+.scene { position: relative; width: 100vw; height: 100vh; min-height: 560px; overflow: hidden; background: #02041f; }
+.bg-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(15, 60, 65, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(10, 76, 72, 0.65) 0%, transparent 55%),
+    linear-gradient(170deg, #02031d 0%, #040b36 55%, #0a4c48 100%);
+  pointer-events: none;
+}
+.art { position: relative; z-index: 1; display: block; width: 100%; height: 100%; }
+.stars {
+  transform-box: view-box;
+  transform-origin: 659px 598px;
+  transform: scale(0.4);
+}
+.stars circle { opacity: 1; }
+
+.sparkles {
+  transform-box: view-box;
+  transform-origin: 659px 598px;
+  transform: scale(0.4);
+}
+.ground-layer {
+  transform-box: view-box;
+  transform-origin: 659px 1196px;
+  transform: scale(0.4);
+}
+.ufo-scaler {
+  transform-box: view-box;
+  transform-origin: 659px 350px;
+  transform: translate(var(--ufo-x, 0px), var(--ufo-y, 0px)) scale(var(--ufo-scale, 1)) rotate(var(--ufo-rotate, 0deg));
+}
+.ufo {
+  transform-origin: 659px 350px;
+  animation: ufo-hover 5.5s ease-in-out infinite;
+}
+.beam-glow {
+  transform-box: fill-box;
+  transform-origin: center top;
+  opacity: .3;
+  transform: scaleX(.95);
+  animation: beam-aura 3.6s ease-in-out infinite;
+}
+.beam-core {
+  transform-box: fill-box;
+  transform-origin: center top;
+  opacity: .82;
+  transform: scaleX(.98);
+  animation: beam-energy 3.6s ease-in-out infinite;
+}
+.projector-light,
+.projector-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: .75;
+  transform: scaleX(.94) scaleY(.84);
+  filter: brightness(.9);
+  animation: projector-pulse 3.6s ease-in-out infinite;
+}
+.lights ellipse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: running-light 2.75s ease-in-out infinite;
+}
+.lights ellipse:nth-child(1) { animation-delay: 0s; }
+.lights ellipse:nth-child(2) { animation-delay: .22s; }
+.lights ellipse:nth-child(3) { animation-delay: .44s; }
+.lights ellipse:nth-child(4) { animation-delay: .66s; }
+.lights ellipse:nth-child(5) { animation-delay: .88s; }
+
+@keyframes twinkle { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@keyframes pulse { 0%, 100% { opacity: .75; } 50% { opacity: 1; } }
+@keyframes ufo-hover {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-9px) rotate(-0.45deg); }
+}
+@keyframes beamPulse { 0%, 100% { opacity: .1; } 50% { opacity: .28; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+
+
+
+
+
+
+@keyframes running-light {
+  0%, 15%, 100% { opacity: .72; transform: scale(.94); filter: brightness(.88); }
+  28%, 45% { opacity: 1; transform: scale(1.15); filter: brightness(1.2) drop-shadow(0 0 7px #ffd65a); }
+}
+@keyframes beam-aura {
+  0%, 100% { opacity: .11; transform: scaleX(.96); }
+  50% { opacity: .32; transform: scaleX(1.045); }
+}
+@keyframes beam-energy {
+  0%, 100% { opacity: .9; transform: scaleX(.985); }
+  50% { opacity: 1; transform: scaleX(1.025); }
+}
+@keyframes projector-pulse {
+  0%, 100% { opacity: .82; transform: scaleX(.96) scaleY(.9); filter: brightness(.96); }
+  50% { opacity: 1; transform: scaleX(1.04) scaleY(1.08); filter: brightness(1.16) drop-shadow(0 0 8px #c7fbff); }
+}
+/* Cinematic motion layers */
+.stars circle { animation: none; }
+.sparkles { animation: none; }
+.ufo { animation: ufo-hover 5.8s cubic-bezier(.45, 0, .55, 1) infinite; }
+.lights {
+  filter: drop-shadow(0 0 1px rgba(255, 197, 54, .45));
+}
+.lights ellipse { animation-duration: 3.15s; }
+.beam-rings {
+  transform-box: view-box;
+  transform-origin: 659px 491px;
+  transform: scaleY(var(--ring-counter-y, 1));
+}
+.beam-rings ellipse {
+  transform-box: view-box;
+  transform-origin: 659px 491px;
+  stroke: #86ff73;
+  stroke-width: 2.5;
+  opacity: 0;
+  filter: drop-shadow(0 0 8px #7eff66) drop-shadow(0 0 24px #c4ffb7);
+  animation: beam-wave-travel 3.6s ease-out infinite;
+}
+.beam-rings ellipse:nth-child(1) { animation-delay: 0s; }
+.beam-rings ellipse:nth-child(2) { animation-delay: -0.45s; }
+.beam-rings ellipse:nth-child(3) { animation-delay: -0.9s; }
+.beam-rings ellipse:nth-child(4) { animation-delay: -1.35s; }
+.beam-rings ellipse:nth-child(5) { animation-delay: -1.8s; }
+.beam-rings ellipse:nth-child(6) { animation-delay: -2.25s; }
+.beam-rings ellipse:nth-child(7) { animation-delay: -2.7s; }
+.beam-rings ellipse:nth-child(8) { animation-delay: -3.15s; }
+.beam-particles circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: .18;
+  animation: beam-spark 2.9s ease-in-out infinite;
+}
+.beam-particles circle:nth-child(2n) { animation-delay: -1.1s; }
+.beam-particles circle:nth-child(3n) { animation-delay: -2.05s; }
+
+@keyframes ufo-hover {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translate(-2px, -5px) rotate(.18deg); }
+  50% { transform: translateY(-10px) rotate(-.45deg); }
+  75% { transform: translate(2px, -4px) rotate(.13deg); }
+}
+@keyframes running-light {
+  0%, 13%, 100% { opacity: .6; transform: scale(.91); filter: brightness(.78); }
+  25%, 43% { opacity: 1; transform: scale(1.18); filter: brightness(1.28) drop-shadow(0 0 8px #ffda68); }
+  58% { opacity: .78; transform: scale(1.01); filter: brightness(.98); }
+}
+@keyframes beam-aura {
+  0%, 100% { opacity: .1; transform: scaleX(.95); }
+  50% { opacity: .38; transform: scaleX(1.06); }
+}
+@keyframes beam-energy {
+  0%, 100% { opacity: .84; transform: scaleX(.98); }
+  50% { opacity: 1; transform: scaleX(1.035); }
+}
+@keyframes projector-pulse {
+  0%, 100% { opacity: .76; transform: scaleX(.94) scaleY(.86); filter: brightness(.9); }
+  50% { opacity: 1; transform: scaleX(1.07) scaleY(1.12); filter: brightness(1.22) drop-shadow(0 0 10px #c7fbff); }
+}
+@keyframes beam-ripple {
+  0% { opacity: 0; transform: scaleX(.65) scaleY(.6); }
+  18% { opacity: .4; }
+  100% { opacity: 0; transform: scaleX(1.2) scaleY(1.35); }
+}
+@keyframes beam-spark {
+  0%, 100% { opacity: .08; transform: translateY(0) scale(.7); }
+  45% { opacity: .82; transform: translateY(28px) scale(1.2); }
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: .38; }
+  48% { opacity: 1; }
+}
+@keyframes sparkle-breathe {
+  0%, 100% { opacity: .55; transform: scale(.82); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+.controls-bar {
+  position: absolute;
+  z-index: 10;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.control-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 17px;
+  color: #dffaff;
+  font: 600 13px/1.1 system-ui, sans-serif;
+  letter-spacing: .04em;
+  background: rgba(3, 13, 47, .74);
+  border: 1px solid rgba(151, 230, 255, .52);
+  border-radius: 999px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .26), inset 0 1px rgba(255, 255, 255, .12);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: border-color .25s ease, background .25s ease, box-shadow .25s ease, transform .15s ease;
+}
+.control-btn:hover {
+  background: rgba(13, 39, 82, .9);
+  border-color: #b8f4ff;
+  box-shadow: 0 8px 30px rgba(31, 194, 243, .16), inset 0 1px rgba(255, 255, 255, .18);
+  transform: translateY(-2px);
+}
+.control-btn:active { transform: translateY(0); }
+.control-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.toggle-indicator {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #8ff4ff;
+  box-shadow: 0 0 10px #61e7ff;
+  transition: background .25s ease, box-shadow .25s ease;
+}
+.projector-off .projector-toggle { border-color: rgba(255, 193, 83, .58); }
+.projector-off .toggle-indicator { background: #f4a62c; box-shadow: 0 0 7px rgba(244, 166, 44, .55); }
+
+
+
+@media (max-width: 520px) {
+  .projector-toggle { bottom: 18px; min-height: 38px; padding-inline: 14px; font-size: 12px; }
+}
+/* Emerald projector, green hull, and cockpit pilot */
+html, body, .scene { background: #020b19; }
+.lights { filter: drop-shadow(0 0 3px rgba(190, 255, 104, .72)); }
+.beam-inner {
+  transform-box: fill-box;
+  transform-origin: center top;
+  opacity: .5;
+  transform: scaleX(.74);
+  animation: beam-inner-wave 3.6s ease-in-out infinite;
+}
+.beam-layers path {
+  stroke-width: 2;
+  opacity: .06;
+  transform: translateY(-10px) scaleX(.86);
+  stroke-linecap: round;
+  animation: beam-scan 3.6s ease-in-out infinite;
+}
+.beam-layers path:nth-child(1) { animation-delay: 0s; }
+.beam-layers path:nth-child(2) { animation-delay: -0.72s; }
+.beam-layers path:nth-child(3) { animation-delay: -1.44s; }
+.beam-layers path:nth-child(4) { animation-delay: -2.16s; }
+.beam-layers path:nth-child(5) { animation-delay: -2.88s; }
+.beam-motes {
+  transform-box: view-box;
+  transform-origin: 659px 491px;
+}
+.beam-motes circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: .15;
+  transform: translateY(-8px) scale(.7) scaleY(var(--mote-counter-y, 1));
+  filter: drop-shadow(0 0 4px #baff8b);
+  animation: green-mote 3.2s ease-in-out infinite;
+}
+.beam-motes circle:nth-child(1) { animation-delay: 0s; }
+.beam-motes circle:nth-child(2) { animation-delay: -0.13s; }
+.beam-motes circle:nth-child(3) { animation-delay: -0.27s; }
+.beam-motes circle:nth-child(4) { animation-delay: -0.4s; }
+.beam-motes circle:nth-child(5) { animation-delay: -0.53s; }
+.beam-motes circle:nth-child(6) { animation-delay: -0.67s; }
+.beam-motes circle:nth-child(7) { animation-delay: -0.8s; }
+.beam-motes circle:nth-child(8) { animation-delay: -0.93s; }
+.beam-motes circle:nth-child(9) { animation-delay: -1.07s; }
+.beam-motes circle:nth-child(10) { animation-delay: -1.2s; }
+.beam-motes circle:nth-child(11) { animation-delay: -1.33s; }
+.beam-motes circle:nth-child(12) { animation-delay: -1.47s; }
+.beam-motes circle:nth-child(13) { animation-delay: -1.6s; }
+.beam-motes circle:nth-child(14) { animation-delay: -1.73s; }
+.beam-motes circle:nth-child(15) { animation-delay: -1.87s; }
+.beam-motes circle:nth-child(16) { animation-delay: -2.0s; }
+.beam-motes circle:nth-child(17) { animation-delay: -2.13s; }
+.beam-motes circle:nth-child(18) { animation-delay: -2.27s; }
+.beam-motes circle:nth-child(19) { animation-delay: -2.4s; }
+.beam-motes circle:nth-child(20) { animation-delay: -2.53s; }
+.beam-motes circle:nth-child(21) { animation-delay: -2.67s; }
+.beam-motes circle:nth-child(22) { animation-delay: -2.8s; }
+.beam-motes circle:nth-child(23) { animation-delay: -2.93s; }
+.beam-motes circle:nth-child(24) { animation-delay: -3.07s; }
+.alien { transform-origin: 670px 200px; animation: alien-settle 5.8s ease-in-out infinite; }
+.alien-eye { transform-box: fill-box; transform-origin: center; animation: alien-blink 5.6s ease-in-out infinite; }
+.projector-light { filter: url(#soft-glow) drop-shadow(0 0 8px #baff91); }
+.projector-toggle { color: #e7ffe1; background: rgba(3, 29, 43, .78); border-color: rgba(128, 229, 209, .54); }
+.projector-toggle:hover { background: rgba(11, 62, 72, .92); border-color: #c7fff0; box-shadow: 0 8px 30px rgba(80, 238, 214, .2), inset 0 1px rgba(255, 255, 255, .18); }
+.toggle-indicator { background: #aaff86; box-shadow: 0 0 10px #68ff9a; }
+.projector-off .projector-toggle { border-color: rgba(189, 248, 93, .55); }
+.projector-off .toggle-indicator { background: #5aa870; box-shadow: 0 0 7px rgba(90, 168, 112, .55); }
+.scene.projector-off .beam-inner,
+.scene.projector-off .beam-layers,
+.scene.projector-off .beam-motes { animation: projector-details-off .28s ease-in forwards; }
+.scene.projector-starting .beam-inner,
+.scene.projector-starting .beam-layers,
+.scene.projector-starting .beam-motes { animation: projector-details-on .42s ease-out forwards; }
+@keyframes running-light {
+  0%, 13%, 100% { opacity: .58; transform: scale(.91); filter: brightness(.75); }
+  25%, 43% { opacity: 1; transform: scale(1.18); filter: brightness(1.3) drop-shadow(0 0 9px #caff78); }
+  58% { opacity: .8; transform: scale(1.01); filter: brightness(1); }
+}
+@keyframes beam-aura { 0%, 100% { opacity: .3; transform: scaleX(.95); } 50% { opacity: .7; transform: scaleX(1.065); } }
+@keyframes beam-energy { 0%, 100% { opacity: .82; transform: scaleX(.98); } 50% { opacity: 1; transform: scaleX(1.035); } }
+@keyframes projector-pulse { 0%, 100% { opacity: .75; transform: scaleX(.94) scaleY(.84); filter: brightness(.9); } 50% { opacity: 1; transform: scaleX(1.07) scaleY(1.12); filter: brightness(1.2) drop-shadow(0 0 11px #c6ff9c); } }
+@keyframes beam-inner-wave { 0%, 100% { opacity: .5; transform: scaleX(.74); } 50% { opacity: .9; transform: scaleX(1.12); } }
+@keyframes beam-scan { 0%, 100% { opacity: .06; transform: translateY(-10px) scaleX(.86); } 50% { opacity: .48; transform: translateY(10px) scaleX(1.08); } }
+@keyframes green-mote { 0%, 100% { opacity: .15; transform: translateY(-8px) scale(.7) scaleY(var(--mote-counter-y, 1)); } 48% { opacity: .92; transform: translateY(26px) scale(1.22) scaleY(var(--mote-counter-y, 1)); } }
+@keyframes alien-settle { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(2px) rotate(.35deg); } }
+@keyframes alien-blink { 0%, 43%, 47%, 100% { transform: scaleY(1); } 45% { transform: scaleY(.08); } }
+/* Keep the inner column geometrically locked to the beam during switching. */
+/* One coherent projection assembly: no independent layer collapse. */
+.projection {
+  transform-box: view-box;
+  transform-origin: 659px 491px;
+  opacity: 1;
+  filter: opacity(var(--beam-opacity, 1));
+  transform: scaleX(1) scaleY(var(--beam-scale-y, 1));
+  transition: opacity .28s ease, transform .45s cubic-bezier(.34, 1.56, .64, 1);
+}
+.scene.projector-off .projection {
+  opacity: 0;
+  transform: scaleX(.08) scaleY(.025);
+}
+.scene.projector-starting .projection {
+  animation: projection-reignite .74s cubic-bezier(.12, .8, .25, 1) forwards;
+}
+.scene.projector-off .projector-light,
+.scene.projector-off .projector-core {
+  animation: none !important;
+  opacity: 0;
+  transform: scaleX(.18) scaleY(.08);
+  transition: opacity .24s ease, transform .42s ease-in;
+}
+.scene.projector-starting .projector-light,
+.scene.projector-starting .projector-core {
+  animation: aperture-reignite .5s ease-out forwards !important;
+}
+.aperture-ring-1,
+.aperture-ring-2,
+.aperture-ring-3 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: aperture-wave 3.2s ease-in-out infinite;
+}
+.aperture-ring-1 { animation-delay: 0s; }
+.aperture-ring-2 { animation-delay: -1.06s; }
+.aperture-ring-3 { animation-delay: -2.13s; }
+
+@keyframes aperture-wave {
+  0%, 100% { transform: scale(1); stroke-opacity: 0.6; filter: drop-shadow(0 0 1px #4bff33); }
+  50% { transform: scale(0.91); stroke-opacity: 1; filter: drop-shadow(0 0 6px #6eff54); }
+}
+
+@keyframes beam-wave-travel {
+  0% { opacity: 0; transform: translateY(0) scaleX(.2) scaleY(.2); }
+  20% { opacity: .65; }
+  80% { opacity: .3; }
+  100% { opacity: 0; transform: translateY(var(--ring-travel, 700px)) scaleX(2.2) scaleY(2.5); }
+}
+
+@keyframes projection-reignite {
+  0% { opacity: 0; transform: scaleX(.08) scaleY(.025); }
+  55% { opacity: .96; transform: scaleX(1.025) scaleY(calc(var(--beam-scale-y, 1) * 1.035)); }
+  100% { opacity: 1; transform: scaleX(1) scaleY(var(--beam-scale-y, 1)); }
+}
+@keyframes aperture-reignite {
+  0% { opacity: 0; transform: scaleX(.18) scaleY(.08); filter: brightness(.7); }
+  65% { opacity: 1; transform: scaleX(1.1) scaleY(1.16); filter: brightness(1.35) drop-shadow(0 0 12px #d9ffad); }
+  100% { opacity: .75; transform: scaleX(.94) scaleY(.84); filter: brightness(.9); }
+}
