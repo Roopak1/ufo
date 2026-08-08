@@ -11,7 +11,7 @@
     <!-- Entire illustration is vector markup: no raster image is used. -->
     <main class="scene" aria-label="Illustration of a flying saucer beaming light over a dark forest">
       <div class="bg-gradient" aria-hidden="true"></div>
-      <svg class="art" viewBox="0 0 1317 1196" role="img" aria-labelledby="art-title art-desc" preserveAspectRatio="xMidYMid slice">
+      <svg class="art" viewBox="0 0 1317 1196" role="img" aria-labelledby="art-title art-desc" preserveAspectRatio="xMidYMax slice">
         <title id="art-title">A glowing UFO in a starry night sky</title>
         <desc id="art-desc">A green flying saucer with a friendly alien pilot shines an emerald beam over dark foliage.</desc>
 
@@ -390,39 +390,13 @@
           </g>
         </g>
       </svg>
-      <div class="controls-bar">
-        <button class="control-btn projector-toggle" id="projector-toggle" type="button" aria-pressed="true">
-          <span class="toggle-indicator" aria-hidden="true"></span>
-          <span class="toggle-label">Projector on</span>
-        </button>
-        <button class="control-btn size-toggle" id="size-toggle" type="button">
-          <span class="size-icon">🔍</span>
-          <span class="size-label">Size: 40%</span>
-        </button>
-      </div>
-
-      <!-- Mobile Controls (hidden on desktop) -->
-      <div class="mobile-controls">
-        <div class="joystick-zone" id="joystick-zone">
-          <div class="joystick-base">
-            <div class="joystick-stick" id="joystick-stick"></div>
-          </div>
-        </div>
-        <div class="altitude-zone">
-          <button class="control-btn mobile-btn" id="mobile-up" type="button">+</button>
-          <button class="control-btn mobile-btn" id="mobile-down" type="button">-</button>
-        </div>
-      </div>
     </main>
     <script>
       const scene = document.querySelector('.scene');
-      const projectorButton = document.querySelector('#projector-toggle');
-      const projectorLabel = projectorButton.querySelector('.toggle-label');
-      const sizeButton = document.querySelector('#size-toggle');
-      const sizeLabel = sizeButton.querySelector('.size-label');
       const projection = document.querySelector('.projection');
       const beamRings = document.querySelector('.beam-rings');
       const beamMotes = document.querySelector('.beam-motes');
+
 
       let startTimer;
 
@@ -443,18 +417,12 @@
         if (isOff) {
           scene.classList.remove('projector-off');
           scene.classList.add('projector-starting');
-          projectorButton.setAttribute('aria-pressed', 'true');
-          projectorLabel.textContent = 'Projector on';
           startTimer = window.setTimeout(() => scene.classList.remove('projector-starting'), 760);
         } else {
           scene.classList.remove('projector-starting');
           scene.classList.add('projector-off');
-          projectorButton.setAttribute('aria-pressed', 'false');
-          projectorLabel.textContent = 'Projector off';
         }
       }
-
-      projectorButton.addEventListener('click', toggleProjector);
 
       // Keyboard Listeners
       window.addEventListener('keydown', (e) => {
@@ -478,62 +446,6 @@
         if (e.key === ' ') keys.space = false;
       });
 
-      // Virtual Joystick State
-      const joystickZone = document.getElementById('joystick-zone');
-      const joystickStick = document.getElementById('joystick-stick');
-      let joystickActive = false;
-      let joystickOrigin = { x: 0, y: 0 };
-      let joystickVector = { x: 0, y: 0 };
-
-      joystickZone.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        joystickActive = true;
-        const touch = e.changedTouches[0];
-        const rect = joystickZone.getBoundingClientRect();
-        joystickOrigin = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-        updateJoystick(touch);
-      }, { passive: false });
-
-      joystickZone.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        if (!joystickActive) return;
-        updateJoystick(e.changedTouches[0]);
-      }, { passive: false });
-
-      joystickZone.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        joystickActive = false;
-        joystickVector = { x: 0, y: 0 };
-        joystickStick.style.transform = `translate(-50%, -50%)`;
-      }, { passive: false });
-
-      function updateJoystick(touch) {
-        const dx = touch.clientX - joystickOrigin.x;
-        const dy = touch.clientY - joystickOrigin.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxRadius = 40;
-
-        let normalizedDistance = Math.min(distance, maxRadius);
-        const angle = Math.atan2(dy, dx);
-        
-        const stickX = Math.cos(angle) * normalizedDistance;
-        const stickY = Math.sin(angle) * normalizedDistance;
-        
-        joystickStick.style.transform = `translate(calc(-50% + ${stickX}px), calc(-50% + ${stickY}px))`;
-        
-        joystickVector.x = stickX / maxRadius;
-        joystickVector.y = stickY / maxRadius;
-      }
-
-      // Mobile Altitude Buttons
-      const mobileUp = document.getElementById('mobile-up');
-      const mobileDown = document.getElementById('mobile-down');
-      
-      mobileUp.addEventListener('touchstart', (e) => { e.preventDefault(); keys.space = true; }, { passive: false });
-      mobileUp.addEventListener('touchend', (e) => { e.preventDefault(); keys.space = false; }, { passive: false });
-      mobileDown.addEventListener('touchstart', (e) => { e.preventDefault(); keys.shift = true; }, { passive: false });
-      mobileDown.addEventListener('touchend', (e) => { e.preventDefault(); keys.shift = false; }, { passive: false });
-
       // Game Loop
       function update() {
         // Update targets based on input
@@ -541,14 +453,9 @@
         if (keys.s) state.targetY += speed;
         if (keys.a) state.targetX -= speed;
         if (keys.d) state.targetX += speed;
-        
-        if (joystickActive) {
-          state.targetX += joystickVector.x * speed;
-          state.targetY += joystickVector.y * speed;
-        }
-
         if (keys.space) state.targetScale += scaleSpeed;
         if (keys.shift) state.targetScale -= scaleSpeed;
+
 
         // Clamp scale and Y to prevent breaking the scene
         state.targetScale = Math.max(0.2, Math.min(state.targetScale, 1.5));
@@ -588,11 +495,6 @@
         beamRings.style.setProperty('--ring-counter-y', counterY);
         beamRings.style.setProperty('--ring-travel', Math.round(705 * beamScaleY) + 'px');
         beamMotes.style.setProperty('--mote-counter-y', counterY);
-
-        // Update UI label
-        if (Math.abs(state.targetScale - state.scale) > 0.01) {
-           sizeLabel.textContent = `Size: ${(state.scale * 100).toFixed(0)}%`;
-        }
 
         requestAnimationFrame(update);
       }
