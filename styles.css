@@ -286,7 +286,7 @@ html, body, .scene { background: #020b19; }
     min-height: 0;
   }
   .ground-layer {
-    transform: scale(.88) translateZ(0);
+    transform: scaleX(var(--ground-scale-x, .88)) scaleY(.88) translateZ(0);
   }
   .mobile-controls {
     display: flex;

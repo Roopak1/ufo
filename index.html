@@ -329,6 +329,18 @@
       const projection = document.querySelector('.projection');
       const beamRings = document.querySelector('.beam-rings');
       const beamMotes = document.querySelector('.beam-motes');
+      const groundLayer = document.querySelector('.ground-layer');
+
+      function fitGroundToViewport() {
+        if (!groundLayer) return;
+        const art = document.querySelector('.art');
+        const bounds = art.getBoundingClientRect();
+        const coverScale = Math.max(bounds.width / 1317, bounds.height / 1196);
+        const widthFit = bounds.width / (1317 * coverScale);
+        groundLayer.style.setProperty('--ground-scale-x', Math.min(.88, widthFit));
+      }
+      fitGroundToViewport();
+      window.addEventListener('resize', fitGroundToViewport, { passive: true });
 
       let startTimer;
 
