@@ -2,7 +2,16 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; background: #02041f; }
 body { overflow: hidden; font-family: Georgia, serif; }
-.scene { position: relative; width: 100vw; height: 100vh; min-height: 560px; overflow: hidden; background: #02041f; }
+.scene { 
+  position: relative; 
+  width: 100vw; 
+  height: 100vh; 
+  min-height: 560px; 
+  overflow: hidden; 
+  background: #02041f;
+  will-change: transform, filter;
+  transform: translateZ(0);
+}
 .bg-gradient {
   position: absolute;
   inset: 0;
@@ -17,24 +26,28 @@ body { overflow: hidden; font-family: Georgia, serif; }
 .stars {
   transform-box: view-box;
   transform-origin: 659px 598px;
-  transform: scale(0.4);
+  transform: scale(0.4) translateZ(0);
+  will-change: transform;
 }
 .stars circle { opacity: 1; }
 
 .sparkles {
   transform-box: view-box;
   transform-origin: 659px 598px;
-  transform: scale(0.4);
+  transform: scale(0.4) translateZ(0);
+  will-change: transform;
 }
 .ground-layer {
   transform-box: view-box;
   transform-origin: 659px 1196px;
-  transform: scale(0.4);
+  transform: scale(0.4) translateZ(0);
+  will-change: transform;
 }
 .ufo-scaler {
   transform-box: view-box;
   transform-origin: 659px 350px;
-  transform: translate(var(--ufo-x, 0px), var(--ufo-y, 0px)) scale(var(--ufo-scale, 1)) rotate(var(--ufo-rotate, 0deg));
+  transform: translate(var(--ufo-x, 0px), var(--ufo-y, 0px)) scale(var(--ufo-scale, 1)) rotate(var(--ufo-rotate, 0deg)) translateZ(0);
+  will-change: transform;
 }
 .ufo {
   transform-origin: 659px 350px;
@@ -326,7 +339,8 @@ html, body, .scene { background: #020b19; }
   transform-origin: 659px 491px;
   opacity: 1;
   filter: opacity(var(--beam-opacity, 1));
-  transform: scaleX(1) scaleY(var(--beam-scale-y, 1));
+  transform: scaleX(1) scaleY(var(--beam-scale-y, 1)) translateZ(0);
+  will-change: transform, opacity;
   transition: opacity .28s ease, transform .45s cubic-bezier(.34, 1.56, .64, 1);
 }
 .scene.projector-off .projection {
@@ -380,3 +394,104 @@ html, body, .scene { background: #020b19; }
   65% { opacity: 1; transform: scaleX(1.1) scaleY(1.16); filter: brightness(1.35) drop-shadow(0 0 12px #d9ffad); }
   100% { opacity: .75; transform: scaleX(.94) scaleY(.84); filter: brightness(.9); }
 }
+/* Mobile Controls overlay */
+.mobile-controls {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .mobile-controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    padding: 24px;
+    align-items: flex-end;
+  }
+  .altitude-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    pointer-events: auto;
+    padding-bottom: 12px;
+  }
+  .mobile-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(3, 29, 43, .65);
+    border: 2px solid rgba(128, 229, 209, .4);
+    color: #e7ffe1;
+    font-size: 32px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    user-select: none;
+    touch-action: none;
+    transition: transform 0.1s, background 0.2s;
+    outline: none;
+    padding: 0;
+  }
+  .mobile-btn:active {
+    background: rgba(11, 62, 72, .9);
+    transform: scale(0.92);
+  }
+  
+  .mobile-btn .toggle-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #aaff86;
+    box-shadow: 0 0 12px #68ff9a;
+    transition: all .28s ease;
+  }
+  .scene.projector-off .mobile-btn .toggle-indicator {
+    background: #ff5e5e;
+    box-shadow: 0 0 12px #ff3333;
+  }
+
+  .joystick-zone {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    pointer-events: auto;
+    touch-action: none;
+  }
+  .joystick-base {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(3, 29, 43, .45);
+    border: 2px solid rgba(128, 229, 209, .3);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .joystick-stick {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(128, 229, 209, .8), rgba(64, 180, 160, .9));
+    border: 2px solid #aaff86;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -32px;
+    margin-left: -32px;
+    box-shadow: 0 4px 15px rgba(128, 229, 209, .5), inset 0 2px 4px rgba(255,255,255,0.4);
+    will-change: transform;
+    /* We handle the transform in JS, but add a transition for resetting */
+  }
+}
+
+
+@media (hover: none) and (pointer: coarse) { #desktop-controls { display: none !important; } }
